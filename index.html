@@ -9,61 +9,70 @@
 </head>
 <body>
     <div class="container">
-        <h1>Absensi Karyawan</h1>
+        <header>
+            <h1>Absensi Karyawan</h1>
+        </header>
         
-        <!-- Dropdown Nama -->
-        <label for="name">Pilih Nama:</label>
-        <select id="name">
-            <option value="">--Pilih Nama--</option>
-            <option value="John">John Doe</option>
-            <option value="Jane">Jane Smith</option>
-            <option value="Mike">Mike Johnson</option>
-        </select>
-        
-        <!-- Dropdown Status Absensi -->
-        <label for="status">Pilih Status Absensi:</label>
-        <select id="status">
-            <option value="">--Pilih Status--</option>
-            <option value="HADIR">HADIR</option>
-            <option value="IZIN">IZIN</option>
-            <option value="CUTI">CUTI</option>
-            <option value="SAKIT">SAKIT</option>
-            <option value="DINAS LUAR">DINAS LUAR</option>
-        </select>
-        
-        <!-- Dropdown Jumlah Hari -->
-        <label for="days">Jumlah Hari:</label>
-        <select id="days">
-            <option value="">--Pilih Jumlah Hari--</option>
-            <!-- Generate options for 1 to 365 -->
-            <script>
-                for (let i = 1; i <= 365; i++) {
-                    let option = document.createElement("option");
-                    option.value = i;
-                    option.textContent = `${i} Hari`;
-                    document.getElementById("days").appendChild(option);
-                }
-            </script>
-        </select>
-        
-        <button onclick="submitAbsence()">Submit Absensi</button>
-        
-        <h2>Data Absensi:</h2>
-        <table id="attendanceTable">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Status</th>
-                    <th>Jumlah Hari</th>
-                    <th>Tanggal</th>
-                    <th>Jam</th>
-                    <th>Lokasi</th> <!-- Menampilkan Nama Kampung/Kecamatan -->
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        
-        <button onclick="exportToExcel()">Export ke Excel</button>
+        <form id="attendanceForm">
+            <div class="form-group">
+                <label for="name">Pilih Nama:</label>
+                <select id="name" class="form-control">
+                    <option value="">--Pilih Nama--</option>
+                    <option value="John">John Doe</option>
+                    <option value="Jane">Jane Smith</option>
+                    <option value="Mike">Mike Johnson</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Pilih Status Absensi:</label>
+                <select id="status" class="form-control">
+                    <option value="">--Pilih Status--</option>
+                    <option value="HADIR">HADIR</option>
+                    <option value="IZIN">IZIN</option>
+                    <option value="CUTI">CUTI</option>
+                    <option value="SAKIT">SAKIT</option>
+                    <option value="DINAS LUAR">DINAS LUAR</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="days">Jumlah Hari:</label>
+                <select id="days" class="form-control">
+                    <option value="">--Pilih Jumlah Hari--</option>
+                    <!-- Generate options for 1 to 365 -->
+                    <script>
+                        for (let i = 1; i <= 365; i++) {
+                            let option = document.createElement("option");
+                            option.value = i;
+                            option.textContent = `${i} Hari`;
+                            document.getElementById("days").appendChild(option);
+                        }
+                    </script>
+                </select>
+            </div>
+            
+            <button type="button" class="btn" onclick="submitAbsence()">Submit Absensi</button>
+        </form>
+
+        <section>
+            <h2>Data Absensi:</h2>
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Status</th>
+                        <th>Jumlah Hari</th>
+                        <th>Tanggal</th>
+                        <th>Jam</th>
+                        <th>Lokasi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <button class="btn export-btn" onclick="exportToExcel()">Export ke Excel</button>
     </div>
     
     <script src="script.js"></script>
